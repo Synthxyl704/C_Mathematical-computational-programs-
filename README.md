@@ -1,4 +1,4 @@
-# C_Mathematical-computational-programs
+# [C] - Mathematical computational programs
 Repository list for C programs conducting and evaluating problems related to computational logics with mathematical numericals.<br>
 (Made during my second introductory CSE semester.)
 
