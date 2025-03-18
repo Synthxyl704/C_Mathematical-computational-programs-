@@ -5,9 +5,8 @@ Repository list for C programs conducting and evaluating problems related to com
 ## Subjects included:
     - Mathematics & Statistics
     - Applied mechanical concepts
-    - Electrical/Electronics engineering
-    - Electrochemistry
     - Applied physics
+    - Other stuff
 
 <h2> Information: </h2>
 This repository was made as a learning/storing tool for me learning the C language and providing an easier dive into low-level computational logic and allocation[s].
