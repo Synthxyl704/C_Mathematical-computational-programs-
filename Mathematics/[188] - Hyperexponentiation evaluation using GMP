@@ -1,0 +1,147 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <inttypes.h>
+#include <gmp.h>
+
+/*
+
+example | 2^^4 -  2 tetrated to 4
+1. -> base = 2, tetration val = 4
+2. -> resultval = 2
+3. -> 1st iteration: iteratedComputatedVal = 2^resultVal = 2^2 = 4
+4. -> 2nd iteration: iteratedComputatedVal = 2^resultval = 2^4 = 16
+5. -> 3rd iteration: iteratedComputatedVal = 2^resultval = 2^16
+6. -> resultVal = iteratedComputatedVal = {{2^16}}
+
+idk how to apply func^n recursively sry
+
+*/
+
+void hyperexpo_gmp(mpz_t result, int64_t base, int64_t height) {
+  mpz_t iteratedComputatedVal;
+  mpz_init(iteratedComputatedVal);
+  
+  mpz_set_si(result, base);                                            // S2
+  
+  for (int inc = 1; inc < height; inc += 1) {                          // start w 1
+    mpz_set_ui(iteratedComputatedVal, 1);                              // apparently this thing doesnt work if i put it outside the SCS       x                   
+
+    if (mpz_cmp_ui(result, 1000000) < 0) {
+      unsigned long int exp = mpz_get_ui(result);
+      mpz_set_ui(iteratedComputatedVal, 1);
+      mpz_ui_pow_ui(iteratedComputatedVal, base, exp);
+    } else {
+
+      mpz_t temp_base;
+      mpz_init_set_si(temp_base, base);
+      
+
+      mpz_t exp;
+      mpz_init_set(exp, result);
+      mpz_set_ui(iteratedComputatedVal, 1);
+      
+      while (mpz_cmp_ui(exp, 0) > 0) {
+        if (mpz_odd_p(exp)) {
+          mpz_mul(iteratedComputatedVal, iteratedComputatedVal, temp_base);
+        }
+        mpz_mul(temp_base, temp_base, temp_base);
+        mpz_tdiv_q_2exp(exp, exp, 1); 
+      }
+      
+      mpz_clear(exp);
+      mpz_clear(temp_base);
+    }
+
+    mpz_set(result, iteratedComputatedVal);                              // S6
+  } 
+  
+  mpz_clear(iteratedComputatedVal);
+}
+
+int main(int argc, char **argv[INT32_MAX]) {
+ int64_t base;
+ int64_t height;
+
+  printf("\n\n");
+  printf("[Base] tetrated to [height] - EXG: 2^^4\n\n");
+
+  printf("Enter base value: ");            scanf("%lld", &base);
+  printf("Enter tetrated/height value: "); scanf("%lld", &height);
+
+  mpz_t tetratedVal;
+  mpz_init(tetratedVal);
+  
+  hyperexpo_gmp(tetratedVal, base, height);
+
+  printf("\nHyperexponentiated value: ");
+  mpz_out_str(stdout, 10, tetratedVal);
+  printf("\n");
+
+  mpz_clear(tetratedVal);
+
+  printf("\n\n");
+
+  return EXIT_SUCCESS;
+}
+
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <inttypes.h>
+
+/*
+
+exg??? 2^^4
+1. -> base = 2, tetration val = 4
+2. -> resultval = 2
+3. -> 1st iteration: iteratedComputatedVal = 2^resultVal = 2^2 = 4
+4. -> 2nd iteration: iteratedComputatedVal = 2^resultval = 2^4 = 16
+5. -> 3rd iteration: iteratedComputatedVal = 2^resultval = 2^16
+6. -> resultVal = iteratedComputatedVal = {{2^16}}
+
+idk how to apply func^n recursively sry
+
+*/
+/*
+
+int64_t hyperexpo(int64_t base,int64_t height) {
+  
+  int64_t resultVal = base;                                           // S2
+  
+  for (int inc = 1; inc < height; inc += 1) {                          // start w 1
+  int64_t iteratedComputatedVal = 1;                                  // apparently this thing doesnt work if i put it outside the SCS       x                   
+
+    for (int inc2 = 0; inc2 < (int64_t)resultVal; inc2 += 1) {        // baseVal * baseval iterated [resultVal]x
+      iteratedComputatedVal *= base;                                   // WHY NOT WORK w/ RESULTVAL>>?                                  
+    } 
+
+    resultVal = iteratedComputatedVal;                                 // S6
+  } 
+  
+  return resultVal;                                              
+}
+
+
+int main(int argc, char **argv[INT32_MAX]) {
+ int64_t base;
+ int64_t height;
+
+  printf("\n\n");
+  printf("[Base] tetrated to [height] - EXG: 2^^4\n\n");
+
+  printf("Enter base value: ");            scanf("%llu", &base);
+  printf("Enter tetrated/height value: "); scanf("%llu", &height);
+
+  int64_t tetratedVal = hyperexpo(base, height);
+
+  printf("\nHyperexponentiated value: [%" PRId64 "]\n", tetratedVal);
+
+  printf("\n\n");
+
+  return EXIT_SUCCESS;
+}
+
+*/
