@@ -14,7 +14,7 @@ example | 2^^4 -  2 tetrated to 4
 5. -> 3rd iteration: iteratedComputatedVal = 2^resultval = 2^16
 6. -> resultVal = iteratedComputatedVal = {{2^16}}
 
-idk how to apply func^n recursively sry
+// maybe wil try in a recursive paradigm later
 
 */
 
