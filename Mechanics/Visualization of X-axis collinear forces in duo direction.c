@@ -10,11 +10,13 @@ void expositoryFunc(char introMessage[]) {  // why would anyone do this sort of 
  | == TERMINAL ENCLOSURE
 
  Output should be this thing {
+ 
 -------------------------------
  | >-----<----->-----<-----> |
    ^     ^     ^     ^     ^
    V     W     X     Y     Z
 -------------------------------
+
 }                                                                     */
 
 int main(void) {
