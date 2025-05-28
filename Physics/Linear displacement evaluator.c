@@ -4,8 +4,9 @@
 
 /*
 
-TD - implement a function that reads analog voltage from a position sensor
-     and converts it to a linear displacement value using the linear interpolation formula
+implement a function that reads analog voltage from a position sensor
+and converts it to a linear displacement value using the linear interpolation formula
+maybe used in vSLAMs
 
 */
 
