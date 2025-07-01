@@ -8,6 +8,8 @@ Repository list for C programs conducting and evaluating problems related to com
     - Applied physics
     - Other stuff
 
+## !NOT ACTIVELY EDITING ANYMORE!
+
 <h2> Information: </h2>
 This repository was made as a learning/storing tool for me learning the C language and providing an easier dive into low-level computational logic and allocation[s].
 <br>Some programs were made during my 1st semester but I had not created this repository at the time.<br>
